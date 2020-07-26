@@ -31,6 +31,16 @@ public class Player : MonoBehaviour
         ProcessRotation();
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        print("Player Collided with something");
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        print("Player triggered with something");
+    }
+
     private void ProcessRotation()
     {
         // Need to rotate
