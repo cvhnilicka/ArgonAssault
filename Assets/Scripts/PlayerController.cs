@@ -1,20 +1,31 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Configuration;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     // Variables n stuff
+    [Header("General")]
     [Tooltip("In ms^1")][SerializeField] float xSpeed = 11f;
     [Tooltip("In ms^1")] [SerializeField] float ySpeed = 9f;
 
+
+    [Header("Screen Position Dependant")]
     [SerializeField] float positionPitchFactor = -7f;
-    [SerializeField] float controlPitchFactor = -25f;
     [SerializeField] float positionYawFactor = 7f;
+    
+
+    [Header("Control Throw Dependant")]
+    [SerializeField] float controlPitchFactor = -25f;
     [SerializeField] float controlRollFactor = -25f;
+
+
     private float horizontalThrow;
     private float verticalThrow;
+
+    private bool isControlEnabled = true;
 
 
 
@@ -27,18 +38,11 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ProcessTranslation();
-        ProcessRotation();
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        print("Player Collided with something");
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        print("Player triggered with something");
+        if (isControlEnabled)
+        {
+            ProcessTranslation();
+            ProcessRotation();
+        }
     }
 
     private void ProcessRotation()
@@ -50,6 +54,11 @@ public class Player : MonoBehaviour
         yaw = transform.localPosition.x * positionYawFactor;
         roll = horizontalThrow * controlRollFactor;
         transform.localRotation = Quaternion.Euler(pitch,yaw,roll);
+    }
+
+    void OnPlayerDeath() // called by collision script
+    {
+        isControlEnabled = false;
     }
 
     private void ProcessTranslation()
