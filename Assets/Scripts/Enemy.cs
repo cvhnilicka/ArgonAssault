@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] GameObject deathFx;
+    [SerializeField] Transform parent;
+
     // Start is called before the first frame update
     void Start()
     {
         AddNonTriggerMeshCollider();
-        
-
-        
+       
     }
 
     private void AddNonTriggerMeshCollider()
@@ -34,6 +35,12 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
+        print("play deathfx");
+
+        GameObject newFx = Instantiate(deathFx, this.transform.position, Quaternion.identity);
+        newFx.transform.parent = parent;
+
+        deathFx.transform.position = this.transform.position;
         Destroy(gameObject);
     }
 }
