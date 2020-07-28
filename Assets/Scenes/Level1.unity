@@ -225,6 +225,12 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &135435171 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4233593597944064371, guid: 8806d8d611c13924780a5fd829536394,
+    type: 3}
+  m_PrefabInstance: {fileID: 4233593598077074128}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &139532136 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4990607877152018, guid: 6d7afa73fcb1fce4cb4b65361a29bcbd,
@@ -3870,6 +3876,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Explosion
       objectReference: {fileID: 0}
+    - target: {fileID: 4233593597944064371, guid: 8806d8d611c13924780a5fd829536394,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4233593597944064375, guid: 8806d8d611c13924780a5fd829536394,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3949,6 +3960,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 963194228}
     m_Modifications:
+    - target: {fileID: 609143339, guid: ee9ef4d7aa2c73d45959e470b68caaaa, type: 3}
+      propertyPath: deathFx
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 609143339, guid: ee9ef4d7aa2c73d45959e470b68caaaa, type: 3}
+      propertyPath: explosionObject
+      value: 
+      objectReference: {fileID: 135435171}
     - target: {fileID: 1896863141064985866, guid: ee9ef4d7aa2c73d45959e470b68caaaa,
         type: 3}
       propertyPath: m_LocalPosition.x
