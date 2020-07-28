@@ -7,11 +7,16 @@ public class Enemy : MonoBehaviour
     [SerializeField] GameObject deathFx;
     [SerializeField] Transform parent;
 
+    ScoreBoard scoreBoard;
+
+    [SerializeField] int scoreForHit = 5;
+
+
     // Start is called before the first frame update
     void Start()
     {
         AddNonTriggerMeshCollider();
-       
+        scoreBoard = FindObjectOfType<ScoreBoard>();
     }
 
     private void AddNonTriggerMeshCollider()
@@ -35,12 +40,10 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
-        print("play deathfx");
-
+        scoreBoard.ScoreHit(scoreForHit);
         GameObject newFx = Instantiate(deathFx, this.transform.position, Quaternion.identity);
         newFx.transform.parent = parent;
-
-        deathFx.transform.position = this.transform.position;
         Destroy(gameObject);
+        
     }
 }
