@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     [Header("General")]
     [Tooltip("In ms^1")][SerializeField] float xSpeed = 11f;
     [Tooltip("In ms^1")] [SerializeField] float ySpeed = 9f;
+    [SerializeField] GameObject[] lazers;
 
 
     [Header("Screen Position Dependant")]
@@ -42,8 +43,10 @@ public class PlayerController : MonoBehaviour
         {
             ProcessTranslation();
             ProcessRotation();
+            ProcessFiring();
         }
     }
+
 
     private void ProcessRotation()
     {
@@ -76,5 +79,33 @@ public class PlayerController : MonoBehaviour
         transform.localPosition = new Vector3(Mathf.Clamp(rawX, -5.25f, 5.25f),
             Mathf.Clamp(rawY, -3.25f, 3.25f),
             transform.localPosition.z);
+    }
+
+    private void ProcessFiring()
+    {
+        if (Input.GetButton("Fire"))
+        {
+            ActivateLazers();
+        }
+        else
+        {
+            DeactivateLasers();
+        }
+    }
+
+    private void DeactivateLasers()
+    {
+        foreach(GameObject lazer in lazers)
+        {
+            lazer.SetActive(false);
+        }
+    }
+
+    private void ActivateLazers()
+    {
+        foreach (GameObject lazer in lazers)
+        {
+            lazer.SetActive(true);
+        }
     }
 }
