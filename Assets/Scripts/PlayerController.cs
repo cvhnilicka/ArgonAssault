@@ -85,27 +85,22 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetButton("Fire"))
         {
-            ActivateLazers();
+            SetLazersActive(true);
         }
         else
         {
-            DeactivateLasers();
+            SetLazersActive(false);
         }
     }
 
-    private void DeactivateLasers()
-    {
-        foreach(GameObject lazer in lazers)
-        {
-            lazer.SetActive(false);
-        }
-    }
 
-    private void ActivateLazers()
+    private void SetLazersActive(bool isActive)
     {
         foreach (GameObject lazer in lazers)
         {
-            lazer.SetActive(true);
+            var emission = lazer.GetComponent<ParticleSystem>().emission;
+            emission.enabled = isActive;
+
         }
     }
 }

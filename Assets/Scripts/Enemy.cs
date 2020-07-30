@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        AddNonTriggerMeshCollider();
+        AddNonTriggerBoxCollider();
         scoreBoard = FindObjectOfType<ScoreBoard>();
     }
 
@@ -26,6 +26,12 @@ public class Enemy : MonoBehaviour
         MeshCollider meshCollider = gameObject.AddComponent<MeshCollider>();
         meshCollider.convex = true;
         meshCollider.isTrigger = false;
+    }
+
+    private void AddNonTriggerBoxCollider()
+    {
+        BoxCollider collider = gameObject.AddComponent<BoxCollider>();
+        collider.isTrigger = false;
     }
 
     // Update is called once per frame
